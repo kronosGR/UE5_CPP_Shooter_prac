@@ -16,6 +16,12 @@ AShooterCharacter::AShooterCharacter()
 	CameraBoom->SetupAttachment(RootComponent);
 	CameraBoom->TargetArmLength  = 300.f;
 	CameraBoom->bUsePawnControlRotation = true;
+
+	// Create the Camera
+	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
+	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
+	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to the arm
+	
 }
 
 // Called when the game starts or when spawned
